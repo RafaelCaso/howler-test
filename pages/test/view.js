@@ -14,7 +14,6 @@ const View = () => {
 
         if (data.success) {
           setFiles(data.files);
-          // Initialize Howler instances for each file
           howlerRefs.current = data.files.map(
             (file, index) =>
               new Howl({
@@ -26,10 +25,9 @@ const View = () => {
                 },
               })
           );
-          // Initialize mute states
           setMuteStates(
             data.files.reduce((acc, file, index) => {
-              acc[index] = false; // Initially not muted
+              acc[index] = false;
               return acc;
             }, {})
           );
@@ -43,7 +41,6 @@ const View = () => {
 
     fetchFiles();
 
-    // Cleanup Howler instances on component unmount
     return () => {
       howlerRefs.current.forEach((howler) => howler.unload());
     };
@@ -74,11 +71,9 @@ const View = () => {
             <a href={file} target="_blank" rel="noopener noreferrer">
               {file}
             </a>
-            {/* Mute button for each file */}
             <button onClick={() => toggleMute(index)}>
               {muteStates[index] ? "Unmute" : "Mute"}
             </button>
-            {/* You might want to add more controls here */}
           </li>
         ))}
       </ul>

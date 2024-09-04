@@ -1,1 +1,1 @@
-#seamless looping for .ogg files using Howler
+# seamless looping for .ogg files using Howler
